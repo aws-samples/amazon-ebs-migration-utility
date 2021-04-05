@@ -48,7 +48,7 @@ Below is a high level set of steps you will need to follow to deploy at scale:
 
 ## Security
 
-If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](https://github.com/aws-samples/amazon-ebs-migration-utility/blob/main/CONTRIBUTING.md#security-issue-notifications). Please do not create a public github issue.
+If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](https://aws.amazon.com/security/vulnerability-reporting/). Please do not create a public github issue.
 
 ## Next Steps
 
