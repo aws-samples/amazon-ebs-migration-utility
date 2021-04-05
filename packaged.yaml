@@ -1,0 +1,116 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: amazon-ebs-migration-utility
+    Description: Amazon EBS Volume Migration Utility
+    Author: Sanjay Dhar
+    SpdxLicenseId: MIT-0
+    LicenseUrl: s3://amazon-ebs-migration-utility/5fa13169f56d1c59f662857e77e0f195
+    ReadmeUrl: s3://amazon-ebs-migration-utility/46a0419f6a1d6df5878f8d26bb9f02f0
+    Labels:
+    - gp2
+    - gp3
+    - EBS
+    HomePageUrl: https://github.com/sanjdhar/amazon-ebs-migration-utility
+    SemanticVersion: 1.0.0
+    SourceCodeUrl: https://github.com/sanjdhar/amazon-ebs-migration-utility
+Parameters:
+  TargetEmail:
+    Type: String
+    Description: Enter a valid email address for notifications (Required)
+    ConstraintDescription: You should enter a valid email address for notifications
+      (Required)
+Resources:
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: /
+  RolePolicies:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: ebsconverter-policy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - logs:CreateLogGroup
+          - logs:CreateLogStream
+          - logs:PutLogEvents
+          Resource: arn:aws:logs:*:*:*
+        - Effect: Allow
+          Action:
+          - sns:Publish
+          Resource:
+            Ref: EBSConvSNS
+        - Effect: Allow
+          Action:
+          - iam:GetRole
+          - iam:ListRoles
+          - kms:DescribeKey
+          - kms:GetKeyPolicy
+          - kms:ListGrants
+          - kms:ListKeyPolicies
+          - kms:ListKeys
+          - ec2:DescribeTags
+          - ec2:DescribeVolumeAttribute
+          - ec2:DescribeVolumeStatus
+          - ec2:DescribeVolumes
+          - ec2:DescribeVolumesModifications
+          - ec2:ModifyVolume
+          - ec2:ModifyVolumeAttribute
+          Resource: '*'
+        - Effect: Allow
+          Action:
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+          - dynamodb:UpdateItem
+          Resource:
+            Fn::GetAtt:
+            - EBSVolumeTable
+            - Arn
+      Roles:
+      - Ref: LambdaRole
+  EBSConvSNS:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+      - Endpoint:
+          Ref: TargetEmail
+        Protocol: email
+  EBSVolumeConverter:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: amazon-ebs-migration-utility
+        S3Key: gp3_upgrade.zip
+      Handler: gp3_upgrade.lambda_handler
+      Runtime: python3.7
+      Timeout: 120
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+        - LambdaRole
+        - Arn
+      Environment:
+        Variables:
+          DDB_TABLE_NAME:
+            Ref: EBSVolumeTable
+          SNS_ARN:
+            Ref: EBSConvSNS
+  EBSVolumeTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: volume_id
+        Type: String
