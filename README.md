@@ -52,7 +52,7 @@ If you discover a potential security issue in this project we ask that you notif
 
 ## Next Steps
 
-We are actively iterating on this program to add more features and functionality.  We'd love to get your input and hear from you. See [CONTRIBUTING](CONTRIBUTING.md)
+We are actively iterating on this project to add more features and functionality.  We'd love to get your input and hear from you. See [CONTRIBUTING](CONTRIBUTING.md) for details on how you could help.
 
 ## License
 
