@@ -46,13 +46,13 @@ Below is a high level set of steps you will need to follow to deploy at scale:
 1. Upload the zip file to your S3 bucket
 1. Execute the sam deploy command with the appropriate parameters.
 
+## Security
+
+If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](https://github.com/aws-samples/amazon-ebs-migration-utility/blob/main/CONTRIBUTING.md#security-issue-notifications). Please do not create a public github issue.
+
 ## Next Steps
 
 We are actively iterating on this program to add more features and functionality.  We'd love to get your input and hear from you. See [CONTRIBUTING](CONTRIBUTING.md)
-
-## Security
-
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
 
 ## License
 
