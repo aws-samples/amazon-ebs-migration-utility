@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 
 Metadata:
   AWS::ServerlessRepo::Application:
-    Name: amazon-ebs-migration-utility
+    Name: amazon-ebs-migration-utility (GovCloud template)
     Description: Amazon EBS Volume Migration Utility
     Author: Sanjay Dhar
     SpdxLicenseId: MIT-0
@@ -90,12 +90,12 @@ Resources:
     Type: AWS::Lambda::Function
     Properties:
       Code: 
-        S3Bucket: amazon-ebs-migration-utility
-        S3Key: gp3_upgrade.zip
+        S3Bucket: <your s3 bucket goes here>
+        S3Key: <zip file containing python code and requirements goes here>
       Handler: gp3_upgrade.lambda_handler
-      Runtime: python3.7
+      Runtime: python3.11
       Timeout: 120
-      MemorySize: 128
+      MemorySize: 256
       Role: !GetAtt LambdaRole.Arn
       Environment:
           Variables:

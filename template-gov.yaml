@@ -46,7 +46,7 @@ Resources:
               - logs:CreateLogGroup
               - logs:CreateLogStream
               - logs:PutLogEvents
-            Resource: "arn:aws:logs:*:*:*"
+            Resource: "arn:aws-us-gov:logs:*:*:*"
           - Effect: Allow
             Action: 
               - sns:Publish
