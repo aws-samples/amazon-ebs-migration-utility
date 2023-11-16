@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 
 Metadata:
   AWS::ServerlessRepo::Application:
-    Name: amazon-ebs-migration-utility (GovCloud template)
+    Name: amazon-ebs-migration-utility (AWS Commercial cloud template)
     Description: Amazon EBS Volume Migration Utility
     Author: Sanjay Dhar
     SpdxLicenseId: MIT-0
