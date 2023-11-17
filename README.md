@@ -7,9 +7,13 @@ This repository contains code that makes it easy for AWS customers to upgrade to
 [sar-deploy]: https://img.shields.io/badge/Serverless%20Application%20Repository-Deploy%20Now-FF9900?logo=amazon%20aws&style=flat-square
 [sar-logo]: https://img.shields.io/badge/Serverless%20Application%20Repository-View-FF9900?logo=amazon%20aws&style=flat-square
 
-[![sar-logo]](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility)
+|AWS Region | SAM repo |
+| --- | --- |
+| AWS Commercial Regions| [![sar-logo] ](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility) |
+| AWS GovCloud Regions| [![sar-logo] ](https://console.amazonaws-us-gov.com/lambda/home#/create/app?applicationId=arn:aws-us-gov:serverlessrepo:us-gov-west-1:348384733796:applications/amazon-ebs-migration-utility) |
 
-The easiest way to get started is to deploy this app from the [Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility). Once deployed, check the CloudFormation console to find the list of resources that have been deployed to your account. At a minimum you will find a Lambda function, DynamoDB table, SNS Topic, IAM role and IAM policy created. *Do not* invoke the Lambda function until you've read this entire README.
+
+The easiest way to get started is to deploy this app from the [Serverless Application Repository (AWS Commerical Region)](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility) or [Serverless Application Repository (AWS GovCloud Region)](https://console.amazonaws-us-gov.com/lambda/home#/create/app?applicationId=arn:aws-us-gov:serverlessrepo:us-gov-west-1:348384733796:applications/amazon-ebs-migration-utility). Once deployed, check the CloudFormation console to find the list of resources that have been deployed to your account. At a minimum you will find a Lambda function, DynamoDB table, SNS Topic, IAM role and IAM policy created. *Do not* invoke the Lambda function until you've read this entire README.
 
 As part of deploying this stack, you will need to provide a valid email address that will be used to send the results summary of the upgrade from gp2 to gp3. You will receive a confirmation email from AWS Notifications (no-reply@sns.amazonaws.com) once the stack has been deployed. You will need to click the link in the email to confirm your email subscription. You will not be able to receive the output results from the Lambda until you confirm your email subscription.
 
@@ -29,7 +33,7 @@ You will need to execute your Lambda function at least two times. You can invoke
 
 ## Deployment
 
-The easiest way to deploy this stack in an AWS Commercial region is from the [AWS Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility). We are currently working on publishing this to the AWS GovCloud Serverless Application Repository.
+The easiest way to get started is to deploy this app from the [Serverless Application Repository (AWS Commerical Region)](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility) or [Serverless Application Repository (AWS GovCloud Region)](https://console.amazonaws-us-gov.com/lambda/home#/create/app?applicationId=arn:aws-us-gov:serverlessrepo:us-gov-west-1:348384733796:applications/amazon-ebs-migration-utility).
 
 Alternatively, you can also use the SAM CLI along with the provided ```template.yaml``` file (  ```template-gov.yaml``` for GovCloud) to [deploy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html) at scale across multiple AWS accounts and in different AWS regions. You can use the below example syntax to integrate your deployment into your CI/CD process and deploy this utility at scale in your enterprise environment.
 
