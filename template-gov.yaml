@@ -90,8 +90,8 @@ Resources:
     Type: AWS::Lambda::Function
     Properties:
       Code: 
-        S3Bucket: <your s3 bucket goes here>
-        S3Key: <zip file containing python code and requirements goes here>
+        S3Bucket: amazon-ebs-migration-utility
+        S3Key: gp3_upgrade.zip
       Handler: gp3_upgrade.lambda_handler
       Runtime: python3.11
       Timeout: 120
