@@ -27,7 +27,7 @@ You will need to execute your Lambda function at least two times. You can invoke
 
 ![First Run](images/lambda-first-run.png)
 
- Depending on how many gp2 volumes are present in your AWS account and target region, the Lambda may take anywhere from a few seconds to a couple of minutes to complete. Please note that even though the Lambda function may complete in a couple of minutes, depending on how large your gp2 volumes are, the upgrade will be running in the background and may take a couple of hours to complete. There is no limit to the number of times you can invoke your Lambda function. Please wait at least 60 seconds before each Lambda function invocation. As mentioned earlier, the first execution will kick off the upgrade from gp2 to gp3.  The subsequent runs after the first run will do a status check on the state of your gp2/gp3 volumes and will send out an email (via SNS) with a summary of the results.
+ The first time the Lambda is run, it will capture the current state of your EBS gp2 volumes. If new gp2 volumes are added after the first run, perform a [clean up](#clean-up) and re-deploy the app. Depending on how many gp2 volumes are present in your AWS account and target region, the Lambda may take anywhere from a few seconds to a couple of minutes to complete. Please note that even though the Lambda function may complete in a couple of minutes, depending on how large your gp2 volumes are, the upgrade will be running in the background and may take a couple of hours to complete. There is no limit to the number of times you can invoke your Lambda function. Please wait at least 60 seconds before each Lambda function invocation. As mentioned earlier, the first execution will kick off the upgrade from gp2 to gp3.  The subsequent runs after the first run will do a status check on the state of your gp2/gp3 volumes and will send out an email (via SNS) with a summary of the results.
 
  ![Next Run](images/lambda-subsequent-runs.png)
 
@@ -49,6 +49,10 @@ Below is a high level set of steps you will need to follow to deploy at scale:
 1. Create a zip file with the contents of this repository which will become your Lambda deployment package.
 1. Upload the zip file to your S3 bucket
 1. Execute the sam deploy command with the appropriate parameters.
+
+## Clean up
+
+This utility was developed with the intent that customers would be able to quickly migrate their gp2 volumes to gp3. Once your upgrade is complete, we recommend that you clean up resources by either deleting the CloudFormation stack or by executing the ```sam delete``` command. If you plan to do your migration in phases over an extended period of time, there is a risk that new volumes may be created and/or deleted which will make the DynamoDB database state inconsistent. To avoid this risk, our recommendation is to clean up the resources and do a fresh deployment when you are ready to start the next phase of your migration.
 
 ## Security
 
