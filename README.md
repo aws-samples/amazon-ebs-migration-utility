@@ -10,8 +10,6 @@ This repository contains code that makes it easy for AWS customers to upgrade to
 |AWS Region | SAM repo |
 | --- | --- |
 | AWS Commercial Regions| [![sar-logo] ](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility) |
-| AWS GovCloud Regions| [![sar-logo] ](https://console.amazonaws-us-gov.com/lambda/home#/create/app?applicationId=arn:aws-us-gov:serverlessrepo:us-gov-west-1:348384733796:applications/amazon-ebs-migration-utility) |
-
 
 The easiest way to get started is to deploy this app from the [Serverless Application Repository (AWS Commerical Region)](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:065399810791:applications~amazon-ebs-migration-utility) or [Serverless Application Repository (AWS GovCloud Region)](https://console.amazonaws-us-gov.com/lambda/home#/create/app?applicationId=arn:aws-us-gov:serverlessrepo:us-gov-west-1:348384733796:applications/amazon-ebs-migration-utility). Once deployed, check the CloudFormation console to find the list of resources that have been deployed to your account. At a minimum you will find a Lambda function, DynamoDB table, SNS Topic, IAM role and IAM policy created. *Do not* invoke the Lambda function until you've read this entire README.
 
